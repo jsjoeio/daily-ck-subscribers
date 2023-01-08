@@ -9,4 +9,5 @@ try {
   );
 } catch (error) {
   console.log("something went wrong ", error);
+  Deno.exit(1);
 }
