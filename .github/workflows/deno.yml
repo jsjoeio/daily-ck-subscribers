@@ -6,19 +6,24 @@
 # This workflow will install Deno then run `deno lint` and `deno test`.
 # For more information see: https://github.com/denoland/setup-deno
 
-name: Run
+name: Run script
 
 on:
   push:
     branches: ["main"]
   pull_request:
     branches: ["main"]
+  schedule:
+    # 4pm UTC on the 7th of the month
+    # https://crontab.guru/#0_16_7_*_*
+    - cron: "0 8 * * *"
+  workflow_dispatch:
 
 permissions:
   contents: read
 
 jobs:
-  test:
+  run:
     runs-on: ubuntu-latest
 
     steps:
@@ -26,10 +31,12 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Setup Deno
-        # uses: denoland/setup-deno@v1
         uses: denoland/setup-deno@9db7f66e8e16b5699a514448ce994936c63f0d54
         with:
           deno-version: v1.x
 
-      - name: Run tests
+      - name: Get total TypeScript Course subscribers
+        env:
+          CK_API_SECRET_KEY: ${{ secrets.CK_API_SECRET_KEY }}
+          TELEGRAM_API_BOT_TOKEN: ${{ secrets.TELEGRAM_API_BOT_TOKEN }}
         run: deno task ts-subscribers
