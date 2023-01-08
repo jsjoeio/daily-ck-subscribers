@@ -1,5 +1,5 @@
 {
-    "tasks": {
-        "ts-subscribers": "deno run --unstable --allow-net --allow-read --allow-env index.ts"
-      }
+  "tasks": {
+    "ts-subscribers": "deno run --unstable --allow-net --allow-read --allow-env index.ts"
+  }
 }
