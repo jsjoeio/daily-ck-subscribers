@@ -1,8 +1,12 @@
 import { getTotalSubscribers, sendMessage } from "./deps.ts";
 
-const typescriptCourseTotalSubscribers = await getTotalSubscribers();
-await sendMessage(
-  `TypeScript Course subscribers: ${
-    typescriptCourseTotalSubscribers.toLocaleString("en-US")
-  }`,
-);
+try {
+  const typescriptCourseTotalSubscribers = await getTotalSubscribers();
+  await sendMessage(
+    `TypeScript Course subscribers: ${
+      typescriptCourseTotalSubscribers.toLocaleString("en-US")
+    }`,
+  );
+} catch (error) {
+  console.log("something went wrong ", error);
+}

@@ -7,6 +7,7 @@ async function getTotalSubscribers(): Promise<number> {
   const res = await fetch(
     `${apiBaseUrl}/subscribers?api_secret=${CK_API_SECRET_KEY}`,
   );
+  console.log(res, "response ");
   const data = await res.json();
   return data.total_subscribers;
 }
